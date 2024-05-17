@@ -1,3 +1,4 @@
+
 # How I Write Medium Articles Using Plain Python Files
 
 As a data scientist who prefers simplicity and efficiency, I've often found
@@ -137,8 +138,8 @@ into the `comment_block` list. If we encounter the stop of the
 comment, we concatenate them into a single string in store them,
 in addition tho the information of the block type, into an instance of the
 `Block` class, wich we collect in our `blocks` list. The same applies to the
-code blocks. We need to add an additional last `if`-statement at the end:
-because of the logic I used to parse the file, the function "assumes" that
+code blocks. We need to add an additional last `if`-statement at the end: 
+because of the logic I used to parse the file, the function "assumes" that 
 the last block is always a comment. If, after the loop is finished,
 we still have content in our `code_block` list, we concatenate this as
 well and store it in a block.
@@ -219,7 +220,7 @@ now need, is a function that puts this together to a markdown file. For this,
 we can simply iterate over our blocks and wrap each block into a markdown code
 block, if it contains code. Easy as that!
 
-````python
+```python
 
 
 def build_markdown(blocks, path):
@@ -242,7 +243,7 @@ def build_markdown(blocks, path):
 
 
 
-````
+```
 
 ## Putting it all together
 
@@ -273,14 +274,29 @@ if __name__ == "__main__":
 
 ```
 
-You can now call this script from your terminal on any Python file. In
-fact, the article you are currently reading was produced by the very Python
-code you've just seen. You can check out the full content on my
-[GitHub](https://github.com/weygoldt). To use the script, save it as `py2md.py`
-and run it on itself with the following command:
+You can now call this script from your terminal on any Python file. In fact,
+the article you are currently reading was produced by the very Python code
+you've just seen. You can check out the full content on my
+[GitHub](https://github.com/weygoldt/py2md). To use the script, save it as
+`py2md.py` and run it on itself with the following command:
 
 ```sh
 python3 py2md.py -p py2md.py -m out.md
+```
+
+Alternatively, you can install it as a package directly from Github with
+the following command.
+
+```sh
+pip install git+github.com/weygoldt/py2md
+```
+
+Then you can use the script from your terminal directly. For example,
+to generate the package `README.md`, I simply called from within the
+repository:
+
+```sh
+py2md -p py2md/main.py -m README.md
 ```
 
 This will generate the article you are reading now, formatted as a Markdown
