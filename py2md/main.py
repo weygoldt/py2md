@@ -19,13 +19,14 @@ integrates perfectly with version control. Plus, it ensures that the file is
 executable and easy to run, making it a self-contained and efficient solution.
 
 Here's the plan:
+
 - Use top-level block comments (enclosed by triple quotes) for text.
 - Treat the rest as code.
 
 A program to achieve this needs to:
 
-1. Extract text from top-level block comments. 2. Wrap Python code in Markdown
-code blocks.
+1. Extract text from top-level block comments.
+2. Wrap Python code in Markdown code blocks.
 
 Let's explore how to do this using standard Python libraries.
 
