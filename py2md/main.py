@@ -2,8 +2,9 @@
 # How I Write Medium Articles Using Plain Python Files
 
 We've all been there: you find an exciting coding experiment, quickly copy the
-code, and it **fails**. Not because of missing dependencies, but due to missing
-functions, variables, or messed-up code order. **I hate that.**
+code, try to execute it, and it **fails**. Not because of missing dependencies,
+but due to missing functions, variables, or messed-up code order. **I hate
+that.**
 
 As a data scientist who values simplicity and efficiency, I've often struggled
 with tools like Jupyter Notebooks. They offer robust features but can
