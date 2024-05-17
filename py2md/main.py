@@ -1,46 +1,44 @@
 """
 # How I Write Medium Articles Using Plain Python Files
 
-As a data scientist who prefers simplicity and efficiency, I've often found
-myself at odds with popular tools like Jupyter Notebooks. While they offer
-robust features, they come with their own set of challenges—especially when it
-comes to version control with Git, teaching file system management to
-beginners, and requiring heavy IDEs like PyCharm or VSCode, or even a browser
-for editing. Being an avid Neovim user, my preference leans towards solutions
-that embrace the simplicity of plain text files. That's why I started exploring
-an unconventional approach:
+We've all been there: you find an exciting coding experiment, quickly copy the
+code, and it **fails**. Not because of missing dependencies, but due to missing
+functions, variables, or messed-up code order. **I hate that.**
 
-**What if you could craft your entire Medium article within a simple Python
-file, using comment blocks for your text and seamlessly converting it to
-Markdown?**
+As a data scientist who values simplicity and efficiency, I've often struggled
+with tools like Jupyter Notebooks. They offer robust features but can
+complicate version control, file management, and require heavy IDEs. As a
+Neovim enthusiast, I prefer plain text solutions. This led me to a novel
+approach:
 
-Imagine the possibilities—this method simplifies the writing process, keeps
-everything in a single file, and integrates perfectly with version control
-systems.
+**What if you could write your entire Medium article in a simple Python file,
+using comment blocks for text and converting it to Markdown?**
 
-To do this, we have to come up with a convention: Let's agree to only add text
-that is supposed to be actual text, not code, to top-level block comments.
-These are the ones enclosed by three quotation marks. They need to be top-level
-only, because if they are indented, they could as well be docstrings for
-functions or classes. All the rest we will simply treat as code. A program that
-achieves this essentially needs to do two things:
+This method simplifies writing, keeps everything in a single file, and
+integrates perfectly with version control. Plus, it ensures that the file is
+executable and easy to run, making it a self-contained and efficient solution.
 
-1. Extract text from top-level block comments in your Python file.
-2. Wrap any Python code in Markdown code blocks for clear, distinct formatting.
+Here's the plan:
+- Use top-level block comments (enclosed by triple quotes) for text.
+- Treat the rest as code.
 
-Sounds straightforward, right? Let's dive into how you can achieve this with
-minimal tools—using just a couple of libraries included in the standard Python
-installation.
+A program to achieve this needs to:
+
+1. Extract text from top-level block comments. 2. Wrap Python code in Markdown
+code blocks.
+
+Let's explore how to do this using standard Python libraries.
 
 ## Imports and helper functions
 
-We'll employ `dataclasses` to manage our content blocks and
-`argparse` to handle command line inputs for source and destination files.
-Ready to revolutionize your writing process? Let’s get started!
+We'll employ `dataclasses` to manage our content blocks, `argparse` to handle
+command line inputs for source and destination files and `re` for some regex
+magic. Ready to revolutionize your writing process? Let’s get started!
 """
 
 from dataclasses import dataclass
 import argparse
+import re
 
 """
 As we have to keep the order of the content intact, my approach essentially
@@ -58,7 +56,7 @@ class Block:
 
 """
 As a next step, lets define a function that helps us parse the command line
-arguments. The only thing we need right now is the location of a python
+arguments. The only thing we need right now is the location of a Python
 file that you would like to test this with and the location to where the output
 file should go.
 """
@@ -86,7 +84,7 @@ def argparser():
 
 """
 We also need a small utility function that checks if the current line
-is the line that indicated the beginning or end of a comment or not:
+is the line that indicates the beginning or end of a comment or not:
 """
 
 
@@ -198,8 +196,8 @@ This is probably not the most elegant implementation of this algorithm but
 I whipped it together quickly and for now it works well. The output of this
 function is now a list of instances of our `Block` class, each containing the
 block content and whether it is code or content (i.e., markdown text). What we
-now need, is a function that puts this together to a markdown file. For this,
-we can simply iterate over our blocks and wrap each block into a markdown code
+now need, is a function that puts this together to a Markdown file. For this,
+we can simply iterate over our blocks and wrap each block into a Markdown code
 block, if it contains code. Easy as that!
 """
 
@@ -218,6 +216,9 @@ def build_markdown(blocks, path):
 
         elif not block.is_code:
             file += block.content
+
+    # remove more that 3 consecutive line breaks
+    file = re.sub(r"\n{3,}", "\n\n", file)
 
     with open(path, "w") as mdfile:
         mdfile.write(file)
@@ -281,7 +282,8 @@ By leveraging the simplicity of plain Python files and the power of basic
 Python libraries, you can streamline your writing process and maintain full
 control over versioning. This method not only simplifies the integration of
 code and text but also ensures that your articles remain easy to **manage** and
-**reproduce**. This is particularly important for data-centric projects, where
-being able to generate your Medium article from the terminal, complete with all
-plots and without errors, is **immensely satisfying**. Happy writing!
+most importantly, **reproduce**. This is particularly important for
+data-centric projects, where being able to generate your report from the
+terminal, complete with all plots and without errors, is **immensely
+satisfying**. Happy writing!
 """
