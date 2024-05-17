@@ -1,8 +1,10 @@
+
 # How I Write Medium Articles Using Plain Python Files
 
 We've all been there: you find an exciting coding experiment, quickly copy the
-code, and it **fails**. Not because of missing dependencies, but due to missing
-functions, variables, or messed-up code order. **I hate that.**
+code, try to execute it, and it **fails**. Not because of missing dependencies,
+but due to missing functions, variables, or messed-up code order. **I hate
+that.**
 
 As a data scientist who values simplicity and efficiency, I've often struggled
 with tools like Jupyter Notebooks. They offer robust features but can
@@ -123,8 +125,8 @@ into the `comment_block` list. If we encounter the stop of the
 comment, we concatenate them into a single string in store them,
 in addition tho the information of the block type, into an instance of the
 `Block` class, wich we collect in our `blocks` list. The same applies to the
-code blocks. We need to add an additional last `if`-statement at the end:
-because of the logic I used to parse the file, the function "assumes" that
+code blocks. We need to add an additional last `if`-statement at the end: 
+because of the logic I used to parse the file, the function "assumes" that 
 the last block is always a comment. If, after the loop is finished,
 we still have content in our `code_block` list, we concatenate this as
 well and store it in a block.
@@ -202,7 +204,7 @@ now need, is a function that puts this together to a Markdown file. For this,
 we can simply iterate over our blocks and wrap each block into a Markdown code
 block, if it contains code. Easy as that!
 
-````python
+```python
 
 def build_markdown(blocks, path):
     file = ""
@@ -225,7 +227,7 @@ def build_markdown(blocks, path):
     with open(path, "w") as mdfile:
         mdfile.write(file)
 
-````
+```
 
 ## Putting it all together
 
