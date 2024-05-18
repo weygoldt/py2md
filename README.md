@@ -1,18 +1,16 @@
 
-# How I Write Medium Articles Using Plain Python Files
+# How I write articles using plain Python files
 
-We've all been there: you find an exciting coding experiment, quickly copy the
-code, try to execute it, and it **fails**. Not because of missing dependencies,
-but due to missing functions, variables, or messed-up code order. **I hate
-that.**
+We’ve all been there: you find an exciting coding experiment, quickly copy the
+code, try to execute it, and it fails. Not because of missing dependencies, but
+due to missing functions, variables, or messed-up code order. I **hate** that.
 
-As a data scientist who values simplicity and efficiency, I've often struggled
-with tools like Jupyter Notebooks. They offer robust features but can
-complicate version control, file management, and require heavy IDEs. As a
-Neovim enthusiast, I prefer plain text solutions. This led me to a novel
-approach:
+As a somebody who values simplicity and efficiency, I’ve often struggled with
+tools like Jupyter Notebooks. They offer robust features but can complicate
+version control, file management, and require heavy IDEs. As a Neovim
+enthusiast, I prefer plain text solutions. This led me to a novel approach:
 
-**What if you could write your entire Medium article in a simple Python file,
+**What if you could write your entire article in a simple Python file,
 using comment blocks for text and converting it to Markdown?**
 
 This method simplifies writing, keeps everything in a single file, and
@@ -199,7 +197,7 @@ def extract_comments(file_path):
 This is probably not the most elegant implementation of this algorithm but
 I whipped it together quickly and for now it works well. The output of this
 function is now a list of instances of our `Block` class, each containing the
-block content and whether it is code or content (i.e., markdown text). What we
+block content and whether it is code or content (i.e., Markdown text). What we
 now need, is a function that puts this together to a Markdown file. For this,
 we can simply iterate over our blocks and wrap each block into a Markdown code
 block, if it contains code. Easy as that!
@@ -233,7 +231,7 @@ def build_markdown(blocks, path):
 
 Now let us add a `main` function that ties this all together: It first parses
 the arguments, then runs the function that extracts the blocks of text and code
-and then puts it all back together into a markdown file.
+and then puts it all back together into a Markdown file.
 
 ```python
 
@@ -264,7 +262,7 @@ you've just seen. You can check out the full content on my
 python3 py2md.py -p py2md.py -m out.md
 ```
 
-Alternatively, you can install it as a package directly from Github with
+Alternatively, you can install it as a package directly from GitHub with
 the following command.
 
 ```sh
