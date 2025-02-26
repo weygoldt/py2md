@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 # How I Write Articles Using Plain Python Files
 
