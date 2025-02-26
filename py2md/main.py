@@ -166,7 +166,7 @@ You can now run this script on any Python file from the terminal.
 For example, if saved as `py2md.py`, run:
 
 ```sh
-python3 py2md.py -p py2md.py -m out.md
+python3 py2md.py py2md.py out.md
 ```
 
 Alternatively, install it directly from GitHub:
@@ -178,7 +178,7 @@ pip install git+https://github.com/weygoldt/py2md
 Then, within the repository, simply run:
 
 ```sh
-py2md -p py2md/main.py -m README.md
+py2md py2md/main.py README.md
 ```
 
 This command will generate the article you’re reading now as a Markdown file. Happy writing!
