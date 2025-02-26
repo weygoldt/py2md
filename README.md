@@ -1,8 +1,3 @@
-
-```python
-#!/usr/bin/env python3
-
-```
 # How I Write Articles Using Plain Python Files
 
 We’ve all been there: you find an exciting coding experiment, quickly copy the code, try to execute it, and it fails. Not because of missing dependencies, but due to missing functions, variables, or an improper code order. I **hate** that.
