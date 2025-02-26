@@ -8,9 +8,12 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = "^3.11"
 
+pytest = "^8.3.4"
+pytest-cov = "^6.0.0"
+typer = "^0.15.1"
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.scripts]
-py2md = "py2md.main:main"
+py2md = "py2md.main:app"
